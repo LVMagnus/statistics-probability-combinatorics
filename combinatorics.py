@@ -40,9 +40,27 @@ def Combination(elementPoolSize, selectionSize, repetitionAllowed = False):
        Calculates how many ways n elements can be arranged in p positions when order of elements does not matter.
     """
 
-    #TODO: handle input errors, selectionSize <= 0 and selectionSize > elementPoolSize 
+    #Input error handling
+    if type(elementPoolSize) != int:
+        raise TypeError("elementPoolSize has to be of int type.")
 
-#    if !repetition and selectionSize > elementPoolSize
+    if type(selectionSize) != int:
+        raise TypeError("selectionSize has to be of int type.")
+    
+    
+    if elementPoolSize < 1:
+        raise ValueError("elmentPoolSize cannot be less than 1.")
+
+    if selectionSize < 1:
+        raise ValueError("selectionSize cannot be less than 1.")
+
+    if !repetitionAllowed and selectionSize > elementPoolSize:
+       raise ValueError("If repetitionAllowed is false, elementPooSize has to be less than or equal to seelctionSize.")
+
+
+
+    
+    #main code
     
     if repetitionAllowed:
         return math.factorial((selectionSize + elementPoolSize - 1)) / ( math.factorial(selectionSize) * math.factorial(elementPoolSize-1))
