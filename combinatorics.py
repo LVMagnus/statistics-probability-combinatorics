@@ -76,7 +76,6 @@ def Combination(elementPoolSize, selectionSize, repetitionAllowed = False):
         return math.factorial((selectionSize + elementPoolSize - 1)) / ( math.factorial(selectionSize) * math.factorial(elementPoolSize-1))
     else:
         return math.factorial(elementPoolSize) / ( math.factorial(selectionSize) * math.factorial(elementPoolSize-selectionSize))
-
 #end def Combination(elementPoolSize, selectionSize, repetition)
 
 
