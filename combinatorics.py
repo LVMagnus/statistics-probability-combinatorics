@@ -1,24 +1,38 @@
 import math
 
-def Permutation(elementPoolSize, selectionSize = 0, repetitionAllowed = False):
+def Permutation(elementPoolSize, selectionSize, repetitionAllowed = False):
     """
        Calculates how many ways n elements can be arranged in p positions when order of elements do matter.
        Invalid or out of bounds selectionSize = short cut for selectionSize equal to elementPoolSize
     """
         
-    #TOCONSIDER: When/if error handling in Combination() gets addressed, for consistency's sake,
-    #it might be better to raise errors for technically invalid inputs here too instead of using it as a shortcut
 
+    #Input error handling
+
+    if type(elementPoolSize) != int:
+        raise TypeError("elementPoolSize has to be of int type.")
+
+    if type(selectionSize) != int:
+        raise TypeError("selectionSize has to be of int type.")
+    
+
+    if elementPoolSize <= 0:
+        raise ValueError("elementPoolSize cannot be less than 1.")
     
     if selectionSize <= 0:
-        elementPoolSize = selectionSize
-    #end if
+        raise ValueError("selectionSize cannot be less than 1.")
 
+    if not repetitionAllowed and selectionSize > elementPoolSize:
+       raise ValueError("If repetitionAllowed is false, elementPooSize has to be less than or equal to seelctionSize.")
+
+
+ 
+   #Main code
 
     result = 1
     
     if repetitionAllowed:
-        result = n ** p
+        result = elementPoolSize ** selectionSize
     else:    
         for i in range(elementPoolSize, elementPoolSize-selectionSize,-1):
             result = result * i
@@ -50,7 +64,7 @@ def Combination(elementPoolSize, selectionSize, repetitionAllowed = False):
     if selectionSize < 1:
         raise ValueError("selectionSize cannot be less than 1.")
 
-    if !repetitionAllowed and selectionSize > elementPoolSize:
+    if not repetitionAllowed and selectionSize > elementPoolSize:
        raise ValueError("If repetitionAllowed is false, elementPooSize has to be less than or equal to seelctionSize.")
 
 
