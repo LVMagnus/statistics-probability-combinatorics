@@ -16,16 +16,12 @@ def Permutation(elementPoolSize, selectionSize = 0, repetitionAllowed = False):
 
 
     result = 1
+    
     if repetitionAllowed:
         result = n ** p
-    else:
-        if selectionSize > elementPoolSize:
-            return 0
-        #end if
-        
-        for i in range(n, n-p,-1):
-            result = result * n
-            n -= 1
+    else:    
+        for i in range(elementPoolSize, elementPoolSize-selectionSize,-1):
+            result = result * i
         #end for
     #end if-else
 
