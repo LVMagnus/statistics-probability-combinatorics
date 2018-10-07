@@ -40,10 +40,10 @@ def Combination(elementPoolSize, selectionSize, repetition = False):
        Calculates how many ways n elements can be arranged in p positions when order of elements does not matter.
     """
 
-    #TODO: handle input errors, selectionSize <= 0 and selectionSize > elementPoolSize 
-
+    #TODO: handle input errors, selectionSize <= 0 and selectionSize > elementPoolSize
     
-    if repetition:
+    
+    if not repetition:
         return math.factorial(elementPoolSize) / ( math.factorial(selectionSize) * math.factorial(elementPoolSize-selectionSize))
     else:
         return math.factorial((selectionSize + elementPoolSize - 1)) / ( math.factorial(selectionSize) * math.factorial(elementPoolSize-1))
