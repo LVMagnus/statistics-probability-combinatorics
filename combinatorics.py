@@ -29,7 +29,7 @@ def Permutation(elementPoolSize, selectionSize = 0, repetition = False):
         #end for
     #end if-else
 
-    return 1*result
+    return result
 #end def Permutation(elementPoolSize, selectionSize, repetition)
 
 
