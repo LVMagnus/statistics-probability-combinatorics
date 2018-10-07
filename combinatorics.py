@@ -1,6 +1,6 @@
 import math
 
-def Permutation(elementPoolSize, selectionSize = 0, repetition = False):
+def Permutation(elementPoolSize, selectionSize = 0, repetitionAllowed = False):
     """
        Calculates how many ways n elements can be arranged in p positions when order of elements do matter.
        Invalid or out of bounds selectionSize = short cut for selectionSize equal to elementPoolSize
@@ -16,7 +16,7 @@ def Permutation(elementPoolSize, selectionSize = 0, repetition = False):
 
 
     result = 1
-    if repetition:
+    if repetitionAllowed:
         result = n ** p
     else:
         if selectionSize > elementPoolSize:
@@ -35,18 +35,19 @@ def Permutation(elementPoolSize, selectionSize = 0, repetition = False):
 
 
 
-def Combination(elementPoolSize, selectionSize, repetition = False):
+def Combination(elementPoolSize, selectionSize, repetitionAllowed = False):
     """
        Calculates how many ways n elements can be arranged in p positions when order of elements does not matter.
     """
 
     #TODO: handle input errors, selectionSize <= 0 and selectionSize > elementPoolSize 
 
+#    if !repetition and selectionSize > elementPoolSize
     
-    if repetition:
-        return math.factorial(elementPoolSize) / ( math.factorial(selectionSize) * math.factorial(elementPoolSize-selectionSize))
-    else:
+    if repetitionAllowed:
         return math.factorial((selectionSize + elementPoolSize - 1)) / ( math.factorial(selectionSize) * math.factorial(elementPoolSize-1))
+    else:
+        return math.factorial(elementPoolSize) / ( math.factorial(selectionSize) * math.factorial(elementPoolSize-selectionSize))
 
 #end def Combination(elementPoolSize, selectionSize, repetition)
 
