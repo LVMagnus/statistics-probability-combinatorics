@@ -1,4 +1,4 @@
-def average(values):
+def Average(values):
     """
         values must be an iterable yielding numbers.
     """
@@ -7,7 +7,7 @@ def average(values):
 #end def average(values)
 
 
-def weightedAverage(values, weights):
+def WeightedAverage(values, weights):
     """
         values: a listing of data points.
         weights: a listing of weights for each data point corresponding to the data point in "values" with same index.
@@ -30,5 +30,23 @@ def weightedAverage(values, weights):
 
     return vSum/wSum
 #end def weightedAverage(values, weights)
+
+def Median(values, ordered=False, orderFunction=sorted):
+    """
+        values: a listing of data points
+        ordered: for optmization purposes. Indicates whether values is already in order or not. It assumes it is not by default.
+        orderFunction: for optmization purposes. Should be a function able to return an ordered version of "values" if "ordered" is set to False. By default, it uses the standard function "sorted".
+    """
+    
+    if not ordered:
+        values = orderFunction(values)
+        
+    length = len(values)
+    if length % 2: #if odd
+        return values[length//2]
+    else: #if even
+        return (values[length//2 - 1]+values[length//2])/2
+#end def Median(values, ordered, orderFunction)
+
 
 
