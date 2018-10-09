@@ -1,3 +1,5 @@
+import math
+
 def Average(values):
     """
         values must be an iterable yielding numbers.
