@@ -49,4 +49,25 @@ def Median(values, ordered=False, orderFunction=sorted):
 #end def Median(values, ordered, orderFunction)
 
 
+def FiveNumberSummary(values, ordered=False, orderFunction=sorted):
+    """
+        values: a listing of data points
+        ordered: for optmization purposes. Indicates whether values is already in order or not. It assumes it is not by default.
+        orderFunction: for optmization purposes. Should be a function able to return an ordered version of "values" if "ordered" is set to False. By default, it uses the standard function "sorted".
+    """
+    
+    if not ordered:
+        values = orderFunction(values)
+
+    length = len(values)
+    firstHalf = values[0:length//2-1]
+    secondHalf = values[math.ceil(length/2):]
+    #this automatically guaranteeds the median is excluded if the length is odd. 
+
+    
+
+    return (values[0],Median(firstHalf,1),Median(values,1),Median(secondHalf,1),values[length-1])
+#end def FiveNumberSummary(values, ordered, orderFunction)
+
+FNS = FiveNumberSummary #just a shorter form
 
