@@ -1,5 +1,3 @@
-import math
-
 def Average(values):
     """
         values must be an iterable yielding numbers.
@@ -61,15 +59,21 @@ def FiveNumberSummary(values, ordered=False, orderFunction=sorted):
     if not ordered:
         values = orderFunction(values)
 
-    length = len(values)
-    firstHalf = values[0:length//2-1]
-    secondHalf = values[math.ceil(length/2):]
-    #this automatically guaranteeds the median is excluded if the length is odd. 
 
-    
+
+    length = len(values)
+
+    firstHalf = values[0:(length//2)]
+    if length % 2:
+        secondHalf = values[(length//2)+1:]
+    else:
+        secondHalf = values[(length//2):]
+    #end if-else
 
     return (values[0],Median(firstHalf,1),Median(values,1),Median(secondHalf,1),values[length-1])
 #end def FiveNumberSummary(values, ordered, orderFunction)
 
 FNS = FiveNumberSummary #just a shorter form
+
+
 
