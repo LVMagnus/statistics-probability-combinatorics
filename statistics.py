@@ -1,5 +1,3 @@
-import math
-
 def Average(values):
     """
         values must be an iterable yielding numbers.
@@ -7,6 +5,8 @@ def Average(values):
     
     return sum(values)/len(values)
 #end def average(values)
+Mean = Average #alternative name
+
 
 
 def WeightedAverage(values, weights):
@@ -33,6 +33,8 @@ def WeightedAverage(values, weights):
     return vSum/wSum
 #end def weightedAverage(values, weights)
 
+
+
 def Median(values, ordered=False, orderFunction=sorted):
     """
         values: a listing of data points
@@ -51,6 +53,7 @@ def Median(values, ordered=False, orderFunction=sorted):
 #end def Median(values, ordered, orderFunction)
 
 
+
 def FiveNumberSummary(values, ordered=False, orderFunction=sorted):
     """
         values: a listing of data points
@@ -61,15 +64,106 @@ def FiveNumberSummary(values, ordered=False, orderFunction=sorted):
     if not ordered:
         values = orderFunction(values)
 
-    length = len(values)
-    firstHalf = values[0:length//2-1]
-    secondHalf = values[math.ceil(length/2):]
-    #this automatically guaranteeds the median is excluded if the length is odd. 
 
-    
+
+    length = len(values)
+
+    firstHalf = values[0:(length//2)]
+    if length % 2:
+        secondHalf = values[(length//2)+1:]
+    else:
+        secondHalf = values[(length//2):]
+    #end if-else
 
     return (values[0],Median(firstHalf,1),Median(values,1),Median(secondHalf,1),values[length-1])
 #end def FiveNumberSummary(values, ordered, orderFunction)
-
 FNS = FiveNumberSummary #just a shorter form
 
+
+
+def Variance(values, sample=False):
+    """
+        values: a listing of data points
+        sample: indicates whether values refer to a sample dataset. Default: False.
+    """
+    
+    m = Mean(values)
+    length = len(values)
+    subSum = 0
+        
+    for x in values:
+        subSum += (x - m)**2
+
+    if sample:
+        length -= 1
+
+    return subSum/length
+#end def Variance(values,sample)
+
+
+def StandardDeviation(values, sample=False):
+    """
+        values: a listing of data points
+        sample: indicates whether values refer to a sample dataset. Default: False.
+    """
+    
+
+
+    return Variance(values,sample)**0.5 #square root
+
+#end def StandardDeviation(values,sample)
+SD = StandardDeviation #shortcut
+
+
+
+
+def MeanAbsoluteDeviation(values):
+    """
+        values: a listing of data points
+    """
+
+    m = Mean(values)
+    subSum = 0
+    for x in values:
+        subSum += abs(x - m)
+
+    return subSum/len(values)
+#end def MeanAbsoluteDeviation(values)
+MeanDeviation = MeanAbsoluteDeviation #alternative name
+MAD = MeanAbsoluteDeviation #ShortCut
+
+
+
+def IndividualPercentile(value, meanValue, standardDeviation):
+    print (value, meanValue, value-meanValue)
+    return (value - meanValue)/standardDeviation
+#end def IndividualPercentile
+
+
+
+
+def Percentiles(values, asList = False):
+    """
+        values: a listing of data points
+        asList = defines if the return object should be a tuple (if False) or a list (if True). Defaults to false.
+    """
+
+
+    mean = Mean(values, 1)
+    std = STD(values, 1)
+    length = len(values)
+    
+    p_list = [0,] * length #creates a list of equal length to values
+
+    for i in range(0,length):
+        p_list[i] = (values[i]-mean)/std
+
+    if not asList:
+        p_list = tuple(p_list)
+
+    return p_list
+#end def Percnetiles
+
+
+test1=[0,1,2,3,4,5,6,7,8,9,10]
+test2=test1[1:]
