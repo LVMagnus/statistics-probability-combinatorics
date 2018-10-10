@@ -131,39 +131,3 @@ def MeanAbsoluteDeviation(values):
 #end def MeanAbsoluteDeviation(values)
 MeanDeviation = MeanAbsoluteDeviation #alternative name
 MAD = MeanAbsoluteDeviation #ShortCut
-
-
-
-def IndividualPercentile(value, meanValue, standardDeviation):
-    print (value, meanValue, value-meanValue)
-    return (value - meanValue)/standardDeviation
-#end def IndividualPercentile
-
-
-
-
-def Percentiles(values, asList = False):
-    """
-        values: a listing of data points
-        asList = defines if the return object should be a tuple (if False) or a list (if True). Defaults to false.
-    """
-
-
-    mean = Mean(values, 1)
-    std = STD(values, 1)
-    length = len(values)
-    
-    p_list = [0,] * length #creates a list of equal length to values
-
-    for i in range(0,length):
-        p_list[i] = (values[i]-mean)/std
-
-    if not asList:
-        p_list = tuple(p_list)
-
-    return p_list
-#end def Percnetiles
-
-
-test1=[0,1,2,3,4,5,6,7,8,9,10]
-test2=test1[1:]
